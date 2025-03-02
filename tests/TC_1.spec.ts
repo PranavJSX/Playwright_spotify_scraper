@@ -16,10 +16,29 @@ test('Login process',async({page})=>{
     console.log('Login process completed');
 
     await page.getByRole('button', { name: 'Coding Music Playlist' }).click();
-    
 
-    const mysongDiv =  page.getByTestId('playlist-tracklist').locator('div').last().locator('div').nth(1);
-    const songarr = await mysongDiv.locator('div').all();
-    console.log(songarr);
+    const first_song = await page.getByTestId('tracklist-row').first().getByRole('gridcell').nth(1).locator('div').first().innerText();
+    console.log('First song ---- ',first_song);
+
+
+    let songs_list = await page.getByTestId('tracklist-row').all();
+
+    let songs_list_name:{id:number,song_name:string} []= []
+    let i = 0 ;
+    songs_list.forEach(async Element=>{
+        // console.log(await Element.locator('div').nth(1).locator('button').getAttribute('aria-label'));
+        let temp = await Element.locator('div').nth(1).locator('button').getAttribute('aria-label');
+        // console.log(temp)
+        if(temp!==undefined){
+            songs_list_name[i] ={
+                id:i,
+                song_name:temp||''
+            }
+        }
+        i++ ;
+        // console.log(songs_list_name);
+    })
+    
+    page.pause()
 
 })

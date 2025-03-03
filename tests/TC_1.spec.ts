@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { environment_variables, songs_array, songs_details } from '../environment/environment';
+import { environment_variables, songs_array, songs_details } from '../environment/Pom';
 import 'dotenv/config';
 
 

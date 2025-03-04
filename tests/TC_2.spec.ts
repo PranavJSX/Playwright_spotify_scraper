@@ -14,21 +14,19 @@ test('Scraping spotify for downloads', async({page})=>{
 test('Downloading the songs one by one',async({page})=>{
     test.setTimeout(50000);
     await page.goto('https://www.youtube.com/');
+
     // await page.locator('.ytSearchboxComponentInput').fill('fsdafs');
         for(let Element of songs_array){
                 console.log('starting the search for ,' , Element);
                 await page.locator('.ytSearchboxComponentInput').fill(Element);
                 await page.keyboard.press('Enter');
-                await page.locator('ytd-video-renderer').first().locator('#dismissible').locator('#thumbnail').click();
+                await page.locator('#title-wrapper').first().click();
                 await page.waitForSelector('#top-row');
                 await links_obj.setsongs_links(page.url());
                 await page.locator('.ytSearchboxComponentInput').fill('');
                 console.log('Search ended::');
             
-        }
-    
-    await page.pause();
-    
+        }    
 })
 
 test('verifying links array',({page})=>{

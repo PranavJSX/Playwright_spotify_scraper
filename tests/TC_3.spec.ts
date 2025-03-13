@@ -26,5 +26,6 @@ test('Starting downloading the songs',async ({page,context})=>{
         await download.saveAs(download.suggestedFilename());
         await page.locator('#logo').locator('a').click();
     }
+    
     await page.pause();
 })

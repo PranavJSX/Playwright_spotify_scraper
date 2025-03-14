@@ -21,6 +21,8 @@ test('Login process',async({page})=>{
     console.log('------LOGIN PROCESS STARTING-----')
     await page.locator('#login-username').fill(obj.getusername());
     await page.locator('#login-password').fill(obj.getpassword());
+    console.log(obj.getusername());
+    console.log(obj.getpassword());
     await page.locator('#login-button').click();
     console.log('------LOGIN PROCESS COMPLETE------');
 
